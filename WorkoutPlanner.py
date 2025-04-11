@@ -71,7 +71,7 @@ def main():
 
     if workout_type in ["cardio", "hiit"]:
         sets = int(input("Enter the number of sets: "))
-        workout_routine = generate_workout(workout_type, rounds=rounds)
+        workout_routine = generate_workout(workout_type, sets=sets)
         if workout_routine:
             print("\nYour workout routine:\n")
             print(workout_routine)
