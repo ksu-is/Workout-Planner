@@ -23,16 +23,16 @@ workouts = {
     "hiit": ["Mountain Climbers", "Sprint Intervals", "Box Jumps", "Plank Jacks", "Battle Ropes", "Jump Squats"]
 }
 
-def generate_workout(workout_type, rounds=None, days=None, selected_muscles=None):
+def generate_workout(workout_type, sets=None, days=None, selected_muscles=None):
     if workout_type.lower() == "cardio" or workout_type.lower() == "hiit":
         workout_options = workouts.get(workout_type.lower())
         if not workout_options:
             print("Invalid workout type.")
             return None
 
-        reps = calculate_reps(workout_type, rounds)
+        reps = calculate_reps(workout_type, sets)
         workout_routine = []
-        for i in range(rounds):
+        for i in range(sets):
             random.shuffle(workout_options)
             workout_routine.append(f"Round {i+1}: {', '.join(workout_options[:4])} ({reps})")
         return "\n".join(workout_routine)
@@ -49,17 +49,17 @@ def generate_workout(workout_type, rounds=None, days=None, selected_muscles=None
         return workout_plan
 
 def calculate_reps(workout_type, rounds):
-    if rounds < 5:
+    if sets < 5:
         if workout_type.lower() == "cardio":
             return "40 reps"
         elif workout_type.lower() == "hiit":
             return "3-4 minutes"
-    elif 5 <= rounds <= 9:
+    elif 5 <= sets <= 9:
         if workout_type.lower() == "cardio":
             return "30 reps"
         elif workout_type.lower() == "hiit":
             return "2-3 minutes"
-    elif rounds > 9:
+    elif sets > 9:
         if workout_type.lower() == "cardio":
             return "20 reps"
         elif workout_type.lower() == "hiit":
@@ -70,7 +70,7 @@ def main():
     workout_type = input("Enter the type of workout (cardio, weightlifting, HIIT): ").lower()
 
     if workout_type in ["cardio", "hiit"]:
-        rounds = int(input("Enter the number of rounds: "))
+        sets = int(input("Enter the number of sets: "))
         workout_routine = generate_workout(workout_type, rounds=rounds)
         if workout_routine:
             print("\nYour workout routine:\n")
