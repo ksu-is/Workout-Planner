@@ -18,10 +18,10 @@ workouts = {
         "core": ["Plank", "Side Plank", "Bird Dogs", "Dead Bugs", "Russian Twists", "Mountain Climbers", "Ab Rollouts"],
         "forearm": ["Wrist Curls", "Reverse Wrist Curls", "Farmer's Walk", "Grip Strength Squeeze", "Reverse Curls", "Plate Pinches", "Towel Pull-Ups"],
         "latissimus dorsi muscle": ["Pull-Ups", "Chin-Ups", "Lat Pulldowns", "T-Bar Rows", "Seated Cable Rows", "One-Arm Dumbbell Rows", "Bent-Over Rows"],
-        "trapezius": ["Shrugs", "Barbell Rows", "Dumbbell Lateral Raises", "Upright Rows","T-Bar Rows"]
-    },
-    "hiit": ["Mountain Climbers", "Sprint Intervals", "Box Jumps", "Plank Jacks", "Battle Ropes", "Jump Squats"]
-}
+        "trapezius": ["Shrugs", "Barbell Rows", "Dumbbell Lateral Raises", "Upright Rows"]
+        
+     "hiit": ["Mountain Climbers", "Sprint Intervals", "Box Jumps", "Plank Jacks", "Battle Ropes", "Jump Squats"]
+
 
 def generate_workout(workout_type, sets=None, days=None, selected_muscles=None):
     if workout_type.lower() == "cardio" or workout_type.lower() == "hiit":
@@ -66,7 +66,7 @@ def calculate_reps(workout_type, sets):
             return "1-2 minutes"
 
 def main():
-    print("Welcome to the Random Workout Generator!")
+    print("Welcome to the Workout Planner!")
     workout_type = input("Enter the type of workout (cardio, weightlifting, HIIT): ").lower()
 
     if workout_type in ["cardio", "hiit"]:
@@ -82,7 +82,7 @@ elif workout_type == "weightlifting":
         for muscle in workouts["weightlifting"].keys():
             print(f"- {muscle.title()}")
 
-        selected_muscles = input("\nEnter the muscles you want to train (comma-separated): ").split(",")
+        selected_muscles = input("\nEnter the areas you want to train (comma-separated): ").split(",")
         selected_muscles = [muscle.strip() for muscle in selected_muscles]
 
         workout_plan = generate_workout(workout_type, days=days, selected_muscles=selected_muscles)
