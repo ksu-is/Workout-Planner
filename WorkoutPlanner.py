@@ -48,7 +48,7 @@ def generate_workout(workout_type, sets=None, days=None, selected_muscles=None):
             workout_plan[f"Day {day}"] = daily_workout[:7]  # Limit to 7 exercises per day
         return workout_plan
 
-def calculate_reps(workout_type, rounds):
+def calculate_reps(workout_type, sets):
     if sets < 5:
         if workout_type.lower() == "cardio":
             return "40 reps"
