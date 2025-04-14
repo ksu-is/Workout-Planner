@@ -19,9 +19,9 @@ workouts = {
         "forearm": ["Wrist Curls", "Reverse Wrist Curls", "Farmer's Walk", "Grip Strength Squeeze", "Reverse Curls", "Plate Pinches", "Towel Pull-Ups"],
         "latissimus dorsi muscle": ["Pull-Ups", "Chin-Ups", "Lat Pulldowns", "T-Bar Rows", "Seated Cable Rows", "One-Arm Dumbbell Rows", "Bent-Over Rows"],
         "trapezius": ["Shrugs", "Barbell Rows", "Dumbbell Lateral Raises", "Upright Rows"]
-        
-     "hiit": ["Mountain Climbers", "Sprint Intervals", "Box Jumps", "Plank Jacks", "Battle Ropes", "Jump Squats"]
-
+    },
+    "hiit": ["Mountain Climbers", "Sprint Intervals", "Box Jumps", "Plank Jacks", "Battle Ropes", "Jump Squats"]
+}
 
 def generate_workout(workout_type, sets=None, days=None, selected_muscles=None):
     if workout_type.lower() == "cardio" or workout_type.lower() == "hiit":
@@ -34,7 +34,7 @@ def generate_workout(workout_type, sets=None, days=None, selected_muscles=None):
         workout_routine = []
         for i in range(sets):
             random.shuffle(workout_options)
-            workout_routine.append(f"Round {i+1}: {', '.join(workout_options[:4])} ({reps})")
+            workout_routine.append(f"Set {i+1}: {', '.join(workout_options[:4])} ({reps})")
         return "\n".join(workout_routine)
 
     elif workout_type.lower() == "weightlifting":
@@ -66,7 +66,7 @@ def calculate_reps(workout_type, sets):
             return "1-2 minutes"
 
 def main():
-    print("Welcome to the Workout Planner!")
+    print("Welcome to the Random Workout Generator!")
     workout_type = input("Enter the type of workout (cardio, weightlifting, HIIT): ").lower()
 
     if workout_type in ["cardio", "hiit"]:
@@ -76,13 +76,13 @@ def main():
             print("\nYour workout routine:\n")
             print(workout_routine)
 
-elif workout_type == "weightlifting":
+    elif workout_type == "weightlifting":
         days = int(input("How many days per week do you want to train? "))
-        print("\nMuscle options:")
-        for muscle in workouts["weightlifting"].keys():
-            print(f"- {muscle.title()}")
+    print("\nMuscle options:")
+    for muscle in workouts["weightlifting"].keys():
+        print(f"- {muscle.title()}")
 
-        selected_muscles = input("\nEnter the areas you want to train (comma-separated): ").split(",")
+        selected_muscles = input("\nEnter the muscles you want to train (comma-separated): ").split(",")
         selected_muscles = [muscle.strip() for muscle in selected_muscles]
 
         workout_plan = generate_workout(workout_type, days=days, selected_muscles=selected_muscles)
